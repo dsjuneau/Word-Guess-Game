@@ -78,13 +78,13 @@ function updateScreen(letter, mysteryWord, currentWord) {
   var arrayCurrentWord = [];
   for (var i = 0; i < mysteryWord.length; i++) {
     if (letter === mysteryWord.charAt(i)) {
-      arrayCurrentWord = currentWord.split();
+      arrayCurrentWord = currentWord.split("");
       arrayCurrentWord[i] = letter;
       currentWord = arrayCurrentWord.join();
     }
   }
 
-  console.log(currentWord);
+  console.log(arrayCurrentWord);
 }
 
 function blankLoad(mysteryWord) {
