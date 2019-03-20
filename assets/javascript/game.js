@@ -51,7 +51,7 @@ function play(letter) {
   if (isNewGame(letter)) {
     initiateGame();
   } else if (isLetterValid(letter)) {
-    updateBoard(letter);
+    updateScreen(letter, mysteryWord, currentWord);
   }
 }
 function isNewGame(letter) {
@@ -69,14 +69,35 @@ function initiateGame() {
     mysteryWord = mysteryWordList[gameNumber];
   }
   gameNumber++;
-
-  console.log(mysteryWord);
+  currentWord = blankLoad(mysteryWord);
+  newScreen(currentWord);
+  console.log(mysteryWord + currentWord);
 }
 
-function updateBoard(letter) {
-  console.log("update board is working");
+function updateScreen(letter, mysteryWord, currentWord) {
+  var arrayCurrentWord = [];
+  for (var i = 0; i < mysteryWord.length; i++) {
+    if (letter === mysteryWord.charAt(i)) {
+      arrayCurrentWord = currentWord.split();
+      arrayCurrentWord[i] = letter;
+      currentWord = arrayCurrentWord.join();
+    }
+  }
+
+  console.log(currentWord);
 }
 
+function blankLoad(mysteryWord) {
+  var currentWord = "";
+  for (var i = 0; i < mysteryWord.length; i++) {
+    currentWord = currentWord + "_";
+  }
+  return currentWord;
+}
+
+function newScreen(currentWord) {
+  $("#word").text(currentWord);
+}
 //Listen for user key press
 
 //Initial load of word and page setup

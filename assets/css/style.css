@@ -28,6 +28,9 @@ header {
   text-align: center;
   width: 100%;
   bottom: 10px;
+  font-size: 3rem;
+  letter-spacing: 1rem;
+  font-weight: bold;
 }
 
 .resultimage {
