@@ -13,14 +13,27 @@
     <!-- <title>Guess That Word</title> -->
   </head>
   <body>
-    <header></header>
+    <header>
+      <h1>Would you like to play a game?</h1>
+      <h3>press any key to begin</h3>
+    </header>
     <main>
       <div class="wordbox">
-        <img class="resultimage" src="https://picsum.photos/200/200 " alt="" />
-        <p class="" id="win">Wins: <span id="wins">0</span></p>
-        <p class="" id="loss">Losses: <span id="losses">0</span></p>
-        <p class="" id="guess">Guesses Left: <span id="guesses">13</span></p>
+        <div class="imageholder">
+          <img
+            class="resultimage hideme"
+            src="assets/images/x.jpg"
+            alt=""
+            width="100px"
+          />
+        </div>
+        <p id="win">Wins: <span id="wins">0</span></p>
+        <p id="loss">Losses: <span id="losses">0</span></p>
+        <p id="guess">Guesses Left: <span id="guesses">13</span></p>
         <p id="word"></p>
+        <p class="letters">
+          Previous Guesses: <span id="guessed-letters"></span>
+        </p>
       </div>
     </main>
     <footer></footer>

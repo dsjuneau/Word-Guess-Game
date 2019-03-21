@@ -6,10 +6,17 @@
 body {
   background-color: #333333;
 }
-
+h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+h3 {
+  text-align: center;
+  font-size: 1.5rem;
+}
 header {
   width: 960px;
-  height: 300px;
+  height: 100px;
   background-color: lightseagreen;
   margin: 0 auto 30px auto;
   border-radius: 20px;
@@ -27,7 +34,7 @@ header {
   position: absolute;
   text-align: center;
   width: 100%;
-  bottom: 10px;
+  bottom: 25px;
   font-size: 3rem;
   letter-spacing: 1rem;
   font-weight: bold;
@@ -54,8 +61,14 @@ header {
   right: 10px;
 }
 .resultimage {
-  position: absolute;
+  /* position: absolute;
   top: 20px;
   left: 20px;
-  border-radius: 10%;
+  border-radius: 10%; */
+}
+.letters {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  text-align: center;
 }

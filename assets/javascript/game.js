@@ -1,7 +1,7 @@
 // This is the word guess game
 
 var mysteryWord = "";
-var chosenLetters = [];
+var chosenLetters = "";
 var gameNumber = 0;
 var wins = 0;
 var losses = 0;
@@ -56,6 +56,7 @@ function play(letter) {
   } else if (isLetterValid(letter)) {
     guesses--;
     $("#guesses").text(guesses);
+    $("#guessed-letters").text(chosenLetters);
     currentWord = updateCurrentWord(letter, mysteryWord, currentWord);
     displayCurrentWord(currentWord);
     if (isWinner(currentWord)) {
@@ -64,7 +65,8 @@ function play(letter) {
       initiateGame();
     } else if (guesses === 0) {
       losses++;
-      $("#losses").text(lossesd);
+      $("#losses").text(losses);
+      initiateGame();
     }
   }
 }
@@ -74,7 +76,7 @@ function isNewGame(letter) {
 
 function isLetterValid(letter) {
   if (alphabet.indexOf(letter) !== -1 && chosenLetters.indexOf(letter) === -1) {
-    chosenLetters.push(letter);
+    chosenLetters = chosenLetters + letter;
     return true;
   } else {
     return false;
@@ -85,6 +87,7 @@ function initiateGame() {
   if (gameNumber < mysteryWordList.length) {
     mysteryWord = mysteryWordList[gameNumber];
   }
+  guesses = 13;
   gameNumber++;
   currentWord = blankLoad(mysteryWord);
   displayCurrentWord(currentWord);
