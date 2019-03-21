@@ -3,6 +3,9 @@
 var mysteryWord = "";
 var chosenLetters = [];
 var gameNumber = 0;
+var wins = 0;
+var losses = 0;
+var guesses = 13;
 var alphabet = [
   "a",
   "b",
@@ -51,7 +54,18 @@ function play(letter) {
   if (isNewGame(letter)) {
     initiateGame();
   } else if (isLetterValid(letter)) {
-    updateScreen(letter, mysteryWord, currentWord);
+    guesses--;
+    $("#guesses").text(guesses);
+    currentWord = updateCurrentWord(letter, mysteryWord, currentWord);
+    displayCurrentWord(currentWord);
+    if (isWinner(currentWord)) {
+      wins++;
+      $("#wins").text(wins);
+      initiateGame();
+    } else if (guesses === 0) {
+      losses++;
+      $("#losses").text(lossesd);
+    }
   }
 }
 function isNewGame(letter) {
@@ -59,9 +73,12 @@ function isNewGame(letter) {
 }
 
 function isLetterValid(letter) {
-  return (
-    alphabet.indexOf(letter) !== -1 && chosenLetters.indexOf(letter) === -1
-  );
+  if (alphabet.indexOf(letter) !== -1 && chosenLetters.indexOf(letter) === -1) {
+    chosenLetters.push(letter);
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function initiateGame() {
@@ -70,21 +87,23 @@ function initiateGame() {
   }
   gameNumber++;
   currentWord = blankLoad(mysteryWord);
-  newScreen(currentWord);
+  displayCurrentWord(currentWord);
   console.log(mysteryWord + currentWord);
 }
 
-function updateScreen(letter, mysteryWord, currentWord) {
-  var arrayCurrentWord = [];
+function updateCurrentWord(letter, mysteryWord, currentWord) {
+  var intermediateCurrentWord = "";
   for (var i = 0; i < mysteryWord.length; i++) {
     if (letter === mysteryWord.charAt(i)) {
-      arrayCurrentWord = currentWord.split("");
-      arrayCurrentWord[i] = letter;
-      currentWord = arrayCurrentWord.join();
+      intermediateCurrentWord = intermediateCurrentWord + letter;
+    } else {
+      intermediateCurrentWord = intermediateCurrentWord + currentWord.charAt(i);
     }
   }
+  currentWord = intermediateCurrentWord;
 
-  console.log(arrayCurrentWord);
+  console.log(currentWord);
+  return currentWord;
 }
 
 function blankLoad(mysteryWord) {
@@ -95,8 +114,16 @@ function blankLoad(mysteryWord) {
   return currentWord;
 }
 
-function newScreen(currentWord) {
+function displayCurrentWord(currentWord) {
   $("#word").text(currentWord);
+}
+
+function isWinner(currentWord) {
+  if (currentWord.indexOf("_") === -1) {
+    return true;
+  } else {
+    return false;
+  }
 }
 //Listen for user key press
 

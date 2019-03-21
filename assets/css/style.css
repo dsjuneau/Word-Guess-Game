@@ -32,7 +32,27 @@ header {
   letter-spacing: 1rem;
   font-weight: bold;
 }
+#win {
+  position: absolute;
+  bottom: 50px;
+  font-size: 2rem;
+  font-weight: bold;
+}
 
+#loss {
+  position: absolute;
+  bottom: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+#guess {
+  position: absolute;
+  bottom: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+  right: 10px;
+}
 .resultimage {
   position: absolute;
   top: 20px;
