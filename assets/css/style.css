@@ -19,7 +19,7 @@ header {
   height: 100px;
   margin: 0 auto 30px auto;
   border-radius: 20px;
-  background-image: url("../images/saw.jpg");
+  /* background-image: url("/images/saw.jpg"); */
   color: white;
 }
 .wordbox {
