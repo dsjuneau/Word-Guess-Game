@@ -52,13 +52,18 @@ var mysteryWordList = [
 
 function play(letter) {
   if (isNewGame(letter)) {
+    $("h1, h3").hide();
     initiateGame();
   } else if (isLetterValid(letter)) {
     if (mysteryWord.indexOf(letter) === -1) {
       guesses--;
       $("#buzz-sound")[0].play();
+      $(".resultimage").animate({ opacity: 1.0 }, 0);
+      $(".resultimage").animate({ opacity: 0.0 }, 1000);
     } else {
       $("#ding-sound")[0].play();
+      $(".goodguess").animate({ opacity: 1.0 }, 0);
+      $(".goodguess").animate({ opacity: 0.0 }, 1000);
     }
     $("#guesses").text(guesses);
     $("#guessed-letters").text(chosenLetters);

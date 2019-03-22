@@ -17,9 +17,10 @@ h3 {
 header {
   width: 960px;
   height: 100px;
-  background-color: lightseagreen;
   margin: 0 auto 30px auto;
   border-radius: 20px;
+  background-image: url("../images/saw.jpg");
+  color: white;
 }
 .wordbox {
   width: 960px;
@@ -64,10 +65,23 @@ header {
   right: 10px;
 }
 .resultimage {
-  /* position: absolute;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  width: 200px;
   top: 20px;
-  left: 20px;
-  border-radius: 10%; */
+  left: 380px;
+  opacity: 0;
+}
+
+.goodguess {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  width: 200px;
+  top: 20px;
+  left: 380px;
+  opacity: 0;
 }
 .letters {
   width: 100%;
