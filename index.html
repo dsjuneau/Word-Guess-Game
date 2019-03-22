@@ -14,7 +14,7 @@
   </head>
   <body>
     <header>
-      <h1>Would you like to play a game?</h1>
+      <h1>Do you want to play a game?</h1>
       <h3>press any key to begin</h3>
     </header>
     <main>
@@ -29,13 +29,17 @@
         </div>
         <p id="win">Wins: <span id="wins">0</span></p>
         <p id="loss">Losses: <span id="losses">0</span></p>
-        <p id="guess">Guesses Left: <span id="guesses">13</span></p>
+        <p id="guess">Guesses Left: <span id="guesses">12</span></p>
         <p id="word"></p>
         <p class="letters">
           Previous Guesses: <span id="guessed-letters"></span>
         </p>
       </div>
     </main>
+    <audio src="assets/sounds/playagame.wav" id="load-sound"></audio>
+    <audio src="assets/sounds/Buzz.wav" id="buzz-sound"></audio>
+    <audio src="assets/sounds/ding.wav" id="ding-sound"></audio>
+
     <footer></footer>
     <script src="assets/javascript/game.js"></script>
   </body>

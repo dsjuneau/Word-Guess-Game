@@ -5,7 +5,7 @@ var chosenLetters = "";
 var gameNumber = 0;
 var wins = 0;
 var losses = 0;
-var guesses = 13;
+var guesses = 12;
 var alphabet = [
   "a",
   "b",
@@ -54,7 +54,12 @@ function play(letter) {
   if (isNewGame(letter)) {
     initiateGame();
   } else if (isLetterValid(letter)) {
-    guesses--;
+    if (mysteryWord.indexOf(letter) === -1) {
+      guesses--;
+      $("#buzz-sound")[0].play();
+    } else {
+      $("#ding-sound")[0].play();
+    }
     $("#guesses").text(guesses);
     $("#guessed-letters").text(chosenLetters);
     currentWord = updateCurrentWord(letter, mysteryWord, currentWord);
@@ -86,12 +91,17 @@ function isLetterValid(letter) {
 function initiateGame() {
   if (gameNumber < mysteryWordList.length) {
     mysteryWord = mysteryWordList[gameNumber];
+  } else {
+    gameNumber = 0;
+    mysteryWord = mysteryWordList[gameNumber];
   }
-  guesses = 13;
+  guesses = 12;
+  chosenLetters = "";
+  $("#guesses").text(guesses);
+  $("#guessed-letters").text(chosenLetters);
   gameNumber++;
   currentWord = blankLoad(mysteryWord);
   displayCurrentWord(currentWord);
-  console.log(mysteryWord + currentWord);
 }
 
 function updateCurrentWord(letter, mysteryWord, currentWord) {
@@ -104,8 +114,6 @@ function updateCurrentWord(letter, mysteryWord, currentWord) {
     }
   }
   currentWord = intermediateCurrentWord;
-
-  console.log(currentWord);
   return currentWord;
 }
 
@@ -144,6 +152,10 @@ function isWinner(currentWord) {
 // Listens for key up event, captures key, converts to lower case,
 // and calls the processing function.
 //===============================================================//
+$(document).ready(function() {
+  $("#load-sound")[0].play();
+});
+
 document.onkeyup = function(event) {
   play(event.key.toLowerCase());
 };
