@@ -1,5 +1,6 @@
 // This is the word guess game
 
+// Global variables
 var mysteryWord = "";
 var chosenLetters = "";
 var gameNumber = 0;
@@ -47,9 +48,8 @@ var mysteryWordList = [
   "screams"
 ];
 
-//User was visually prompted by HTML page
-//Add sound clip that plays after the page loads See document.ready
-
+//Main function.  Processes a key press to initiates a new game
+//track guesses, wins, and losses.
 function play(letter) {
   if (isNewGame(letter)) {
     $("h1, h3").hide();
@@ -80,10 +80,13 @@ function play(letter) {
     }
   }
 }
+
+// Checks if the user presses the key to start the initial game
 function isNewGame(letter) {
   return mysteryWord === "";
 }
 
+// Is the key pressed a letter?  Has it been guessed alreay?
 function isLetterValid(letter) {
   if (alphabet.indexOf(letter) !== -1 && chosenLetters.indexOf(letter) === -1) {
     chosenLetters = chosenLetters + letter;
@@ -93,6 +96,8 @@ function isLetterValid(letter) {
   }
 }
 
+// Initiate game:  Loads the word from an array, updates guesses and
+// game number.  Updates screen as well.
 function initiateGame() {
   if (gameNumber < mysteryWordList.length) {
     mysteryWord = mysteryWordList[gameNumber];
@@ -109,6 +114,7 @@ function initiateGame() {
   displayCurrentWord(currentWord);
 }
 
+//  Compares letter to word and replaces _ with letter is there is a match.
 function updateCurrentWord(letter, mysteryWord, currentWord) {
   var intermediateCurrentWord = "";
   for (var i = 0; i < mysteryWord.length; i++) {
@@ -122,6 +128,7 @@ function updateCurrentWord(letter, mysteryWord, currentWord) {
   return currentWord;
 }
 
+// Loads the display word with _
 function blankLoad(mysteryWord) {
   var currentWord = "";
   for (var i = 0; i < mysteryWord.length; i++) {
@@ -130,10 +137,13 @@ function blankLoad(mysteryWord) {
   return currentWord;
 }
 
+// Updates the display with the current word.
+
 function displayCurrentWord(currentWord) {
   $("#word").text(currentWord);
 }
 
+//  Checks for the win condition
 function isWinner(currentWord) {
   if (currentWord.indexOf("_") === -1) {
     return true;
@@ -141,21 +151,10 @@ function isWinner(currentWord) {
     return false;
   }
 }
-//Listen for user key press
 
-//Initial load of word and page setup
-
-//Pick a word at random
-//Make sure it hasn't been played already
-//If end is reached, say the end.
-/* Check to see if letter is correct.  If no, update remaining guesses and picture.  If yes, update word.  If word is complete, win screen, update wins and start new game.  If lost, loss screen, update losses and start new game */
-
-//Distinguish between intial load and processing guesses by looking to see if a word has been defined.
-
-//Sound byte here?????
-//================  Essentially the main loop ===================//
-// Listens for key up event, captures key, converts to lower case,
-// and calls the processing function.
+//================ Main program starts here ===================//
+//   Plays a sound then listens for key up event, captures key,
+//   converts to lower case and calls the processing function.
 //===============================================================//
 $(document).ready(function() {
   $("#load-sound")[0].play();
